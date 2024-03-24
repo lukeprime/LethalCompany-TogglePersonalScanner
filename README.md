@@ -1,4 +1,5 @@
 # TogglePersonalScanner
+![image](https://github.com/lukeprime/LethalCompany-TogglePersonalScanner/assets/108359791/b84c87bd-9994-4ccd-8ef2-ea5eccee61f3)
 - When the scan button is single-clicked, scanning will be toggled on and will run constantly. Single-click again, and it will toggle off.
 - A scanner icon is shown in the HUD when automatic scanning is toggled on.
 - The scanning visual effect and sound effect do not play when the scan toggle is turned on, so it is not too distracting during gameplay.
