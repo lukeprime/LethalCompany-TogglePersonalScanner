@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace TogglePersonalScanner.Patches
@@ -9,12 +10,29 @@ namespace TogglePersonalScanner.Patches
         static InputAction.CallbackContext pingContext;
         static InputAction pingScanAction;
         static bool toggleScan = false;
+        public static Sprite scannerIcon;
+        public static UnityEngine.UI.Image scannerImage;
 
         [HarmonyPatch("Start")]
         [HarmonyPostfix]
         static void StartPatch(HUDManager __instance)
         {
             pingScanAction = IngamePlayerSettings.Instance.playerInput.actions.FindAction("PingScan");
+
+            GameObject hudSelfObject = GameObject.Find("Systems/UI/Canvas/IngamePlayerHUD/TopLeftCorner/Self");
+            GameObject crouchIconObject = new GameObject("CrouchIcon");
+            crouchIconObject.transform.SetParent(hudSelfObject.transform, false);
+            crouchIconObject.transform.SetAsLastSibling();
+            crouchIconObject.transform.localRotation = Quaternion.Euler(0, 180f, 0);
+            RectTransform rectTransform = crouchIconObject.AddComponent<RectTransform>();
+            scannerImage = crouchIconObject.AddComponent<UnityEngine.UI.Image>();
+            scannerImage.sprite = scannerIcon;
+            rectTransform.sizeDelta = new Vector2(
+                20,
+                20
+            );
+            crouchIconObject.transform.position = hudSelfObject.transform.position + new Vector3(0.18f, 0.10f, 0);
+            scannerImage.enabled = false;
         }
 
         [HarmonyPatch("Update")]
@@ -58,7 +76,14 @@ namespace TogglePersonalScanner.Patches
                 }
             }
 
-            return;
+            if (toggleScan)
+            {
+                scannerImage.enabled = true;
+            }
+            else
+            {
+                scannerImage.enabled = false;
+            }
         }
 
         // Patch the HudManager.PingScan_performed function so we can capture the context for future reuse
