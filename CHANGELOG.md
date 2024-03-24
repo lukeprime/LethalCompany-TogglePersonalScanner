@@ -1,3 +1,7 @@
+# v1.0.2
+03/24/2024
+- Add details to readme
+
 # v1.0.1
 03/24/2024
 - Add scanner icon to HUD when toggled on
