@@ -1,6 +1,6 @@
 {
     "name": "TogglePersonalScanner",
-    "version_number": "1.0.2",
+    "version_number": "1.0.3",
     "website_url": "https://github.com/lukeprime/LethalCompany-TogglePersonalScanner",
     "description": "Toggle personal scanner to always scan with single-click along with an accompanying icon in the HUD to indicate that it is on.",
     "dependencies": [

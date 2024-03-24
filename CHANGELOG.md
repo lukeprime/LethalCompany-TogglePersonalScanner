@@ -1,3 +1,7 @@
+# v1.0.3
+03/24/2024
+- Add screenshot to readme
+
 # v1.0.2
 03/24/2024
 - Add details to readme
